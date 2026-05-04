@@ -1,0 +1,59 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Order {
+  id            String   @id @default(cuid())
+  externalId    String   @unique
+  platform      String
+  status        String
+  amount        Float
+  currency      String   @default("BRL")
+  productName   String
+  customerEmail String
+  customerName  String
+
+  utmSource   String?
+  utmMedium   String?
+  utmCampaign String?
+  utmContent  String?
+  utmTerm     String?
+
+  rawPayload String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([platform])
+  @@index([status])
+  @@index([utmSource])
+  @@index([utmCampaign])
+  @@index([createdAt])
+}
+
+model WebhookEvent {
+  id        String   @id @default(cuid())
+  platform  String
+  eventType String
+  status    String
+  payload   String
+  error     String?
+  orderId   String?
+  createdAt DateTime @default(now())
+
+  @@index([platform])
+  @@index([createdAt])
+}
+
+model WebhookConfig {
+  id          String   @id @default(cuid())
+  platform    String   @unique
+  secretToken String
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
