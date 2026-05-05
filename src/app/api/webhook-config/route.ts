@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 
 export async function GET() {
   const configs = await prisma.webhookConfig.findMany();
-  const masked = configs.map((c) => ({
+  const masked = configs.map((c: (typeof configs)[number]) => ({
     ...c,
     secretToken: c.secretToken.slice(0, 8) + "••••••••",
   }));
