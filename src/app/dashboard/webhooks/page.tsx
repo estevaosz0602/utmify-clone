@@ -33,8 +33,8 @@ export default async function WebhooksPage() {
 
         <WebhookConfigPanel
           platforms={PLATFORMS}
-          configs={configs.map((c) => ({ ...c, secretToken: c.secretToken.slice(0, 8) + "••••••••" }))}
-          events={recentEvents.map((e) => ({ ...e, createdAt: e.createdAt.toISOString() }))}
+          configs={configs.map((c: (typeof configs)[number]) => ({ ...c, secretToken: c.secretToken.slice(0, 8) + "••••••••" }))}
+          events={recentEvents.map((e: (typeof recentEvents)[number]) => ({ ...e, createdAt: e.createdAt.toISOString() }))}
         />
       </div>
     </div>

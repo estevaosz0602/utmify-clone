@@ -1,14 +1,17 @@
 import { PrismaClient } from "@prisma/client";
 import { PrismaNeon } from "@prisma/adapter-neon";
 
-const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
-
-function createPrisma() {
-  const url = process.env.DATABASE_URL!;
-  const adapter = new PrismaNeon({ connectionString: url });
-  return new PrismaClient({ adapter } as any);
+declare global {
+  // eslint-disable-next-line no-var
+  var prisma: PrismaClient | undefined;
 }
 
-export const prisma = globalForPrisma.prisma || createPrisma();
+function createPrisma(): PrismaClient {
+  const connectionString = process.env.DATABASE_URL!;
+  const adapter = new PrismaNeon({ connectionString });
+  return new PrismaClient({ adapter });
+}
 
-if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
+export const prisma = global.prisma ?? createPrisma();
+
+if (process.env.NODE_ENV !== "production") global.prisma = prisma;
