@@ -26,7 +26,8 @@ export type Platform =
   | "kiwify"
   | "eduzz"
   | "ticto"
-  | "perfectpay";
+  | "perfectpay"
+  | "applyfy";
 
 export const PLATFORMS: Platform[] = [
   "hotmart",
@@ -34,6 +35,7 @@ export const PLATFORMS: Platform[] = [
   "eduzz",
   "ticto",
   "perfectpay",
+  "applyfy",
 ];
 
 export const PLATFORM_LABELS: Record<Platform, string> = {
@@ -42,6 +44,7 @@ export const PLATFORM_LABELS: Record<Platform, string> = {
   eduzz: "Eduzz",
   ticto: "Ticto",
   perfectpay: "PerfectPay",
+  applyfy: "Applyfy",
 };
 
 export const PLATFORM_COLORS: Record<Platform, string> = {
@@ -50,4 +53,5 @@ export const PLATFORM_COLORS: Record<Platform, string> = {
   eduzz: "#0070f3",
   ticto: "#00c46a",
   perfectpay: "#ff6b35",
+  applyfy: "#8b5cf6",
 };

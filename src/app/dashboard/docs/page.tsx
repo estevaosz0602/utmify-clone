@@ -110,6 +110,47 @@ const platforms = [
   }
 }`,
   },
+  {
+    id: "applyfy",
+    name: "Applyfy",
+    color: "#8b5cf6",
+    auth: "Campo `token` no body (gerado ao criar o webhook no painel)",
+    utmNote: "UTMs nativos em `transaction.trackProps.utm_*`. A Applyfy passa todos os UTMs automaticamente, incluindo `fbc`, `fbp` e dados de geolocalização.",
+    sampleEvent: "TRANSACTION_CREATED",
+    samplePayload: `{
+  "event": "TRANSACTION_CREATED",
+  "token": "seu_token_aqui",
+  "offerCode": "ABCK181",
+  "client": {
+    "name": "João Silva",
+    "email": "joao@email.com",
+    "phone": "(11) 9 8888-7777"
+  },
+  "transaction": {
+    "id": "1pned18asp",
+    "status": "COMPLETED",
+    "paymentMethod": "CREDIT_CARD",
+    "amount": 197.00,
+    "currency": "BRL",
+    "installments": 3,
+    "orderItems": [
+      {
+        "price": 197.00,
+        "product": { "name": "Curso de Marketing Digital" }
+      }
+    ],
+    "trackProps": {
+      "utm_source": "facebook",
+      "utm_medium": "cpc",
+      "utm_campaign": "lancamento-2026",
+      "utm_content": "newsletter",
+      "utm_term": "summer+venda",
+      "fbc": "fb.1.1234567890.0987654321",
+      "fbp": "fb.1.0987654321.1234567890"
+    }
+  }
+}`,
+  },
 ];
 
 export default function DocsPage() {

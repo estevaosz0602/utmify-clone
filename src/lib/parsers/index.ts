@@ -4,6 +4,7 @@ import { parseKiwify } from "./kiwify";
 import { parseEduzz } from "./eduzz";
 import { parseTicto } from "./ticto";
 import { parsePerfectPay } from "./perfectpay";
+import { parseApplyfy } from "./applyfy";
 
 export type PlatformParser = (
   payload: Record<string, unknown>,
@@ -20,4 +21,6 @@ export const PARSERS: Record<string, PlatformParser> = {
   ticto: parseTicto,
   perfectpay: (payload, rawBody, secret) =>
     parsePerfectPay(payload, rawBody, secret),
+  applyfy: (payload, rawBody, secret) =>
+    parseApplyfy(payload, rawBody, secret),
 };
