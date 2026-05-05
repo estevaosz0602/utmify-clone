@@ -4,6 +4,8 @@ import { WebhookConfigPanel } from "@/components/webhooks/webhook-config-panel";
 import { prisma } from "@/lib/prisma";
 import { PLATFORMS } from "@/types/webhook";
 
+export const dynamic = "force-dynamic";
+
 export default async function WebhooksPage() {
   const configs = await prisma.webhookConfig.findMany();
   const recentEvents = await prisma.webhookEvent.findMany({

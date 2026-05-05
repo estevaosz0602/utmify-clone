@@ -1,5 +1,7 @@
 import { Suspense } from "react";
 import { subDays } from "date-fns";
+
+export const dynamic = "force-dynamic";
 import { DollarSign, ShoppingCart, TrendingUp, Percent } from "lucide-react";
 import { getAnalytics } from "@/lib/analytics/aggregator";
 import { MetricCard } from "@/components/dashboard/metric-card";
